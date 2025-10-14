@@ -1,0 +1,25 @@
+@font-face {
+  font-family: "cabinet-grotesk";
+  src: url("../vendor/CabinetGrotesk-Black.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+.cards__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  gap: 21px;
+}
+
+.cards__text {
+  padding: 40px 0 34px;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}

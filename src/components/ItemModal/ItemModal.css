@@ -16,3 +16,18 @@
   bottom: 28px;
   position: relative;
 }
+
+.modal__footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal__delete {
+  border: none;
+  color: #ff4d00;
+  background-color: white;
+  cursor: pointer;
+  /* position: absolute;
+  right: 50px;
+  bottom: 100px; */
+}

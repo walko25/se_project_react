@@ -1,13 +1,13 @@
 import { useForm } from "../../hooks/useForm";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
+const AddItemModal = ({ isOpen, handleAddItem, onClose }) => {
   const defaultValues = { name: "", imageUrl: "", weather: "" };
   const { values, handleChange } = useForm(defaultValues);
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onAddItem(values);
+    handleAddItem(values);
   }
 
   return (
@@ -55,6 +55,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
             name="weather"
             value="hot"
             onChange={handleChange}
+            required
           />
           Hot
         </label>

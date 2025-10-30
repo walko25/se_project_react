@@ -36,7 +36,7 @@ function App() {
     setSelectedCard(card);
   };
 
-  const onAddItem = (inputValues) => {
+  const handleAddItem = (inputValues) => {
     const newCardData = {
       name: inputValues.name,
       imageUrl: inputValues.imageUrl,
@@ -117,8 +117,9 @@ function App() {
               path="/profile"
               element={
                 <Profile
-                  onCardClick={handleCardClick}
+                  onAddClick={handleAddClick}
                   clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
                 />
               }
             />
@@ -136,7 +137,7 @@ function App() {
           name="new-card"
           buttonText="Add garment"
           onClose={closeActiveModal}
-          onAddItem={onAddItem}
+          handleAddItem={handleAddItem}
         />
         <ItemModal
           activeModal={activeModal}

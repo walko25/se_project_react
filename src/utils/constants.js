@@ -6,7 +6,7 @@ export const defaultWeatherOptions = [
   },
   {
     day: true,
-    condition: "cloudy",
+    condition: "clouds",
     url: new URL("../assets/day/cloudy-day.png", import.meta.url).href,
   },
   {
@@ -16,7 +16,7 @@ export const defaultWeatherOptions = [
   },
   {
     day: true,
-    condition: "storm",
+    condition: "thunderstorm",
     url: new URL("../assets/day/storm-day.png", import.meta.url).href,
   },
   {
@@ -36,7 +36,7 @@ export const defaultWeatherOptions = [
   },
   {
     day: false,
-    condition: "cloudy",
+    condition: "clouds",
     url: new URL("../assets/night/cloudy-night.png", import.meta.url).href,
   },
   {
@@ -46,7 +46,7 @@ export const defaultWeatherOptions = [
   },
   {
     day: false,
-    condition: "storm",
+    condition: "thunderstorm",
     url: new URL("../assets/night/storm-night.png", import.meta.url).href,
   },
   {

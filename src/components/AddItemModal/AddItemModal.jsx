@@ -1,13 +1,19 @@
-import { useForm } from "../../hooks/useForm";
+import useFormWithValidation from "../../hooks/useFormWithValidation";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 const AddItemModal = ({ isOpen, handleAddItem, onClose }) => {
   const defaultValues = { name: "", imageUrl: "", weather: "" };
-  const { values, handleChange } = useForm(defaultValues);
+  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation(defaultValues);
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    // only submit when the browser validation says the form is valid
+    if (!isValid) return;
+
     handleAddItem(values);
+
+    // clear the form values and errors after successful submission
+    resetForm(defaultValues, {}, false);
   }
 
   return (
@@ -55,6 +61,7 @@ const AddItemModal = ({ isOpen, handleAddItem, onClose }) => {
             name="weather"
             value="hot"
             onChange={handleChange}
+            checked={values.weather === "hot"}
             required
           />
           Hot
@@ -67,6 +74,7 @@ const AddItemModal = ({ isOpen, handleAddItem, onClose }) => {
             name="weather"
             value="warm"
             onChange={handleChange}
+            checked={values.weather === "warm"}
           />
           Warm
         </label>
@@ -78,6 +86,7 @@ const AddItemModal = ({ isOpen, handleAddItem, onClose }) => {
             name="weather"
             value="cold"
             onChange={handleChange}
+            checked={values.weather === "cold"}
           />
           Cold
         </label>

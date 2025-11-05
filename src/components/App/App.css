@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  /* Use absolute path so the dev server serves the correct file */
+  src: url("/src/vendor/fonts/CabinetGrotesk-Black.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
 .page {
   background-color: #f3f3f3;
   font-family: cabinet-grotesk, sans-serif;

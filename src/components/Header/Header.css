@@ -41,3 +41,8 @@
   color: black;
   text-decoration: none;
 }
+
+.header__auth-btn {
+  border: none;
+  background-color: transparent;
+}

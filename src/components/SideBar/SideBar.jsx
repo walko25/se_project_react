@@ -14,6 +14,9 @@ export default function SideBar() {
             alt="User Avatar"
             className="sidebar__avatar"
           />
+          <button className="sidebar__edit-button" onClick={onEditProfileModal}>
+            Edit profile
+          </button>
         </div>
       </div>
     </aside>

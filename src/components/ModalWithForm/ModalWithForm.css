@@ -41,7 +41,7 @@
 .modal__content {
   background-color: white;
   position: relative;
-  padding: 28px 28px 36px;
+  padding: 28px 28px 64px;
   max-width: 496px;
   box-sizing: border-box;
   width: 100%;
@@ -81,13 +81,12 @@
   letter-spacing: 0%;
 }
 
-/* Invalid state styles for form fields */
 .modal__label_invalid {
-  color: #ff4d4f; /* red for title */
+  color: #ff4d4f;
 }
 
 .modal__input_invalid {
-  border-bottom-color: #ff4d4f; /* red underline */
+  border-bottom-color: #ff4d4f;
 }
 
 .modal__legend_invalid {
@@ -125,11 +124,39 @@
   width: 124px;
   height: 36px;
   white-space: nowrap;
+  position: absolute;
+  left: 28px;
+  bottom: 18px;
 }
-
-/* Active / ready state for the submit button */
 .modal__submit_active {
   opacity: 1;
   background-color: #000000;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.modal__form > .modal__login-link {
+  position: absolute;
+  left: calc(28px + 124px + 12px);
+  bottom: 18px;
+  height: 36px;
+  line-height: 36px;
+  display: inline-block;
+  padding: 0 8px;
+  background: transparent;
+  border: none;
+}
+
+@media (max-width: 420px) {
+  .modal__content {
+    padding-bottom: 36px;
+  }
+  .modal__submit {
+    position: static;
+    width: 100%;
+  }
+  .modal__form > .modal__login-link {
+    position: static;
+    display: block;
+    margin-top: 12px;
+  }
 }

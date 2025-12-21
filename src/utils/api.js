@@ -30,3 +30,23 @@ export function removeItem(itemID) {
     headers,
   }).then(handleServerResponse);
 }
+
+export function addCardLike(itemID, token) {
+  return fetch(`${baseUrl}/items/${itemID}/likes`, {
+    method: "PUT",
+    headers: {
+      ...headers,
+      authorization: `Bearer ${token}`,
+    },
+  }).then(handleServerResponse);
+}
+
+export function removeCardLike(itemID, token) {
+  return fetch(`${baseUrl}/items/${itemID}/likes`, {
+    method: "DELETE",
+    headers: {
+      ...headers,
+      authorization: `Bearer ${token}`,
+    },
+  }).then(handleServerResponse);
+}

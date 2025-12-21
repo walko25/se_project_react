@@ -22,7 +22,9 @@ function ModalWithForm({
         <form onSubmit={onSubmit} className="modal__form">
           {children}
           <button
-            className={`modal__submit ${isFormValid ? "modal__submit_active" : ""}`}
+            className={`modal__submit ${
+              isFormValid ? "modal__submit_active" : ""
+            }`}
             type="submit"
           >
             {isFormValid ? "Add" : buttonText}

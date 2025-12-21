@@ -40,3 +40,15 @@ export const checkToken = (token) => {
     },
   }).then(checkResponse);
 };
+
+// Update user profile
+export const updateProfile = (userData, token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(userData),
+  }).then(checkResponse);
+};

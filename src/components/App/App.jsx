@@ -20,7 +20,7 @@ import Footer from "../Footer/Footer";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { getItems, addItem, removeItem } from "../../utils/api.js";
+import { getItems, addItem, removeItem, addCardLike, removeCardLike } from "../../utils/api.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
 function App() {
@@ -85,6 +85,22 @@ function App() {
 
   const closeActiveModal = () => {
     setActiveModal("");
+  };
+
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+
+    !isLiked
+      ? addCardLike(id, token).then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+        })
+      : removeCardLike(id, token).then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+        });
   };
 
   const handleCreateModal = () => setActiveModal("add-garment");

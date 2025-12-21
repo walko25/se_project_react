@@ -6,10 +6,11 @@ export default function Profile({
   clothingItems,
   onCardClick,
   handleAddClick,
+  onEditProfileModal,
 }) {
   return (
     <section className="profile">
-      <SideBar />
+      <SideBar onEditProfileModal={onEditProfileModal} />
       <ClothesSection
         onCardClick={onCardClick}
         clothingItems={clothingItems}

@@ -1,0 +1,19 @@
+.modal__login-link {
+  color: black;
+  font-family: Cabinet Grotesk;
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  color: inherit;
+}
+
+.modal__login-link:focus-visible {
+  outline: 2px solid rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+}

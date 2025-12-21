@@ -81,6 +81,24 @@
   letter-spacing: 0%;
 }
 
+/* Invalid state styles for form fields */
+.modal__label_invalid {
+  color: #ff4d4f; /* red for title */
+}
+
+.modal__input_invalid {
+  border-bottom-color: #ff4d4f; /* red underline */
+}
+
+.modal__legend_invalid {
+  color: #ff4d4f;
+}
+
+.modal__radio-buttons_invalid {
+  border-bottom: 1px solid #ff4d4f;
+  padding-bottom: 16px;
+}
+
 .modal__form {
   display: flex;
   flex-direction: column;
@@ -107,4 +125,11 @@
   width: 124px;
   height: 36px;
   white-space: nowrap;
+}
+
+/* Active / ready state for the submit button */
+.modal__submit_active {
+  opacity: 1;
+  background-color: #000000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
 }

@@ -3,8 +3,19 @@ import logo from "../../assets/header__logo.svg";
 import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Header({ handleAddClick, weatherData }) {
+function Header({
+  handleAddClick,
+  onCreateModal,
+  onRegisterModal,
+  onLoginModal,
+  onLogout,
+  currentUser,
+  isLoggedIn,
+  weatherData,
+}) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -20,18 +31,45 @@ function Header({ handleAddClick, weatherData }) {
       </p>
       <ToggleSwitch />
       <button
-        onClick={handleAddClick}
+        onClick={onCreateModal || handleAddClick}
         type="button"
         className="header__add-clothes-button"
       >
         + Add Clothes
       </button>
-      <NavLink className="header__nav-link" to="/profile">
-        <div className="header__user-container">
-          <p className="header__username">Terrence Tegegne</p>
-          <img src={avatar} alt="Terrence Tegegne" className="Header__avatar" />
+
+      {isLoggedIn ? (
+        <div className="header__auth">
+          <NavLink className="header__nav-link" to="/profile">
+            <div className="header__user-container">
+              <p className="header__username">{currentUser?.name ?? "User"}</p>
+              {currentUser?.avatar ? (
+                <img
+                  src={currentUser.avatar}
+                  alt={currentUser.name}
+                  className="Header__avatar"
+                />
+              ) : (
+                <div className="header__avatar-placeholder">
+                  {currentUser?.name?.[0]?.toUpperCase() ?? "U"}
+                </div>
+              )}
+            </div>
+          </NavLink>
+          <button type="button" className="header__logout" onClick={onLogout}>
+            Log out
+          </button>
         </div>
-      </NavLink>
+      ) : (
+        <div className="header__auth">
+          <button className="header__auth-btn" onClick={onRegisterModal}>
+            Sign up
+          </button>
+          <button className="header__auth-btn" onClick={onLoginModal}>
+            Log in
+          </button>
+        </div>
+      )}
     </header>
   );
 }

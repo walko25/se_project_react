@@ -1,7 +1,6 @@
 @font-face {
-  font-family: "Cabinet Grotesk";
-  /* Use absolute path so the dev server serves the correct file */
-  src: url("/src/vendor/fonts/CabinetGrotesk-Black.otf") format("opentype");
+  font-family: "cabinet-grotesk";
+  src: url("../vendor/CabinetGrotesk-Black.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
 }
@@ -17,7 +16,7 @@
 
 .cards__text {
   padding: 40px 0 34px;
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: Cabinet Grotesk;
   font-weight: 700;
   font-style: Bold;
   font-size: 20px;

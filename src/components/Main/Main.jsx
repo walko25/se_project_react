@@ -23,12 +23,17 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
         <ul className="cards__list">
           {clothingItems
             .filter((item) => {
-              return item.weather === weatherData.type;
+              // If weather type is not set yet, show all items as a fallback.
+              if (!weatherData.type) return true;
+              return (
+                (item.weather || "").toLowerCase() ===
+                weatherData.type.toLowerCase()
+              );
             })
             .map((item) => {
               return (
                 <ItemCard
-                  key={item._id}
+                  key={item._id ?? item.id}
                   item={item}
                   onCardClick={handleCardClick}
                 />

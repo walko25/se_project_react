@@ -5,7 +5,11 @@ function ItemCard({ item, onCardClick, onCardLike, currentUser, isLoggedIn }) {
     onCardClick(item);
   };
 
-  const isLiked = item.likes.some((id) => id === currentUser._id);
+  const isLiked =
+    isLoggedIn &&
+    currentUser &&
+    item.likes &&
+    item.likes.includes(currentUser._id);
 
   const handleLike = () => {
     onCardLike({ id: item._id, isLiked });

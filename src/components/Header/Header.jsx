@@ -3,8 +3,6 @@ import logo from "../../assets/header__logo.svg";
 import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { NavLink } from "react-router-dom";
-import { useContext } from "react";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Header({
   handleAddClick,
@@ -20,6 +18,8 @@ function Header({
     month: "long",
     day: "numeric",
   });
+
+  console.log("Header - isLoggedIn:", isLoggedIn, "currentUser:", currentUser);
 
   return (
     <header className="header">
@@ -42,16 +42,18 @@ function Header({
         <div className="header__auth">
           <NavLink className="header__nav-link" to="/profile">
             <div className="header__user-container">
-              <p className="header__username">{currentUser?.name ?? "User"}</p>
-              {currentUser?.avatar ? (
+              <p className="header__username">
+                {currentUser?.data?.name ?? "User"}
+              </p>
+              {currentUser?.data?.avatar ? (
                 <img
-                  src={currentUser.avatar}
-                  alt={currentUser.name}
-                  className="Header__avatar"
+                  src={currentUser.data.avatar}
+                  alt={currentUser.data.name}
+                  className="header__avatar"
                 />
               ) : (
                 <div className="header__avatar-placeholder">
-                  {currentUser?.name?.[0]?.toUpperCase() ?? "U"}
+                  {currentUser?.data?.name?.[0]?.toUpperCase() ?? "U"}
                 </div>
               )}
             </div>

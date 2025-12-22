@@ -1,9 +1,10 @@
 import "./SideBar.css";
 import avatar from "../../assets/avatar.png";
+import currentUser from "../../contexts/CurrentUserContext";
 
-export default function SideBar() {
-  const avatarDefault = avatar;
-  const username = "Terrence Tegegne";
+export default function SideBar({ onEditProfileModal }) {
+  const avatarDefault = currentUser.avatar || avatar;
+  const username = currentUser.username;
   return (
     <aside className="sidebar">
       <div>

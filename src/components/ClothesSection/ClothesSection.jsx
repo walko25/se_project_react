@@ -5,6 +5,7 @@ export default function ClothesSection({
   clothingItems,
   onCardClick,
   handleAddClick,
+  currentUser,
 }) {
   return (
     <div className="clothes-section">
@@ -19,11 +20,13 @@ export default function ClothesSection({
         </button>
       </div>
       <ul className="clothes-section__items">
-        {clothingItems.map((item) => {
-          return (
-            <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
-          );
-        })}
+        {clothingItems
+          .filter((item) => item.owner === currentUser?._id)
+          .map((item) => {
+            return (
+              <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
+            );
+          })}
       </ul>
     </div>
   );

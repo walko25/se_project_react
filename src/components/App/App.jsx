@@ -20,8 +20,16 @@ import Footer from "../Footer/Footer";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { getItems, addItem, removeItem, addCardLike, removeCardLike } from "../../utils/api.js";
+import {
+  getItems,
+  addItem,
+  removeItem,
+  addCardLike,
+  removeCardLike,
+  updateProfile,
+} from "../../utils/api.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -37,6 +45,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -48,13 +57,15 @@ function App() {
   };
 
   const handleAddItem = (inputValues) => {
+    const token = localStorage.getItem("jwt");
+
     const newCardData = {
       name: inputValues.name,
       imageUrl: inputValues.imageUrl,
       weather: inputValues.weather,
     };
 
-    addItem(newCardData)
+    addItem(newCardData, token)
       .then((data) => {
         const normalized = {
           _id: data._id ?? data.id,
@@ -68,8 +79,20 @@ function App() {
       .catch(console.error);
   };
 
+  const handleUpdateUser = (userData) => {
+    const token = localStorage.getItem("jwt");
+
+    updateProfile(userData, token)
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser);
+        closeActiveModal();
+      })
+      .catch(console.error);
+  };
+
   const handleDeleteItem = (id) => {
-    removeItem(id)
+    const token = localStorage.getItem("jwt");
+    removeItem(id, token)
       .then(() => {
         setClothingItems((prevItems) =>
           prevItems.filter((item) => item._id !== id)
@@ -77,6 +100,10 @@ function App() {
         closeActiveModal();
       })
       .catch(console.error);
+  };
+
+  const handleEditProfileModal = () => {
+    setIsEditProfileModalOpen(true);
   };
 
   const handleAddClick = () => {
@@ -87,7 +114,7 @@ function App() {
     setActiveModal("");
   };
 
-  const handleCardLike = ({ id, isLiked }) => {
+  const handleCardLike = ({ id, isLiked, handleCardLike }) => {
     const token = localStorage.getItem("jwt");
 
     !isLiked
@@ -194,6 +221,8 @@ function App() {
           name: item.name,
           imageUrl: item.imageUrl ?? item.link,
           weather: item.weather ? item.weather.toLowerCase() : "",
+          likes: item.likes || [],
+          owner: item.owner,
         }));
         setClothingItems(normalized);
       })
@@ -225,6 +254,9 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
+                    isLoggedIn={isLoggedIn}
+                    currentUser={currentUser}
                   />
                 }
               />
@@ -237,6 +269,7 @@ function App() {
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
                       currentUser={currentUser}
+                      onEditProfileModal={handleEditProfileModal}
                     />
                   </ProtectedRoute>
                 }
@@ -275,6 +308,20 @@ function App() {
             onClose={closeActiveModal}
             onDeleteItem={handleDeleteItem}
           />
+          {activeModal === "edit-profile" && (
+            <EditProfileModal
+              onClose={closeActiveModal}
+              onUpdateUser={handleUpdateUser}
+              isOpen={activeModal === "edit-profile"}
+            />
+          )}
+          {isEditProfileModalOpen && (
+            <EditProfileModal
+              isOpen={isEditProfileModalOpen}
+              onClose={closeActiveModal}
+              onUpdateUser={handleUpdateUser}
+            />
+          )}
           <Footer />
         </div>
       </CurrentUserContext.Provider>

@@ -26,3 +26,18 @@
   width: 100%;
   border-radius: 20px;
 }
+
+.card__like-button {
+  position: absolute;
+  top: 15px;
+  right: 100px;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

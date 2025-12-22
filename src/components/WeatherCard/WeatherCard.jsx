@@ -1,6 +1,5 @@
 import "./WeatherCard.css";
 import { defaultWeatherOptions } from "../../utils/constants.js";
-import { use } from "react";
 import { useContext } from "react";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 

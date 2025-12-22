@@ -7,6 +7,7 @@ export default function Profile({
   onCardClick,
   handleAddClick,
   onEditProfileModal,
+  currentUser,
 }) {
   return (
     <section className="profile">
@@ -15,6 +16,7 @@ export default function Profile({
         onCardClick={onCardClick}
         clothingItems={clothingItems}
         handleAddClick={handleAddClick}
+        currentUser={currentUser}
       />
     </section>
   );

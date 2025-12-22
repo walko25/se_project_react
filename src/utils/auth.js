@@ -1,7 +1,7 @@
-const baseUrl = "http://localhost:3001";
+const baseUrl = "http://127.0.0.1:3001";
 
 // Helper function to check response
-const checkResponse = (res) => {
+export const checkResponse = (res) => {
   if (res.ok) {
     return res.json();
   }

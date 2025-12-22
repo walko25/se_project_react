@@ -1,7 +1,13 @@
 import "./ItemModal.css";
 import closeIconWhite from "../../assets/close-icon-white.png";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
+  const currentUser = useContext(CurrentUserContext);
+
+  const isOwn = card.owner === currentUser?._id;
+
   const handleDeleteClick = () => {
     if (!card._id) {
       console.error("Item ID is missing:", card);
@@ -21,9 +27,11 @@ function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
         <img src={card.imageUrl} alt={card.name} className="modal__image" />
         <div className="modal__footer">
           <h2 className="modal__caption">{card.name}</h2>
-          <button className="modal__delete" onClick={handleDeleteClick}>
-            Delete Item
-          </button>
+          {isOwn && (
+            <button className="modal__delete" onClick={handleDeleteClick}>
+              Delete Item
+            </button>
+          )}
         </div>
         <div>
           <p className="modal__weather">Weather: {card.weather}</p>

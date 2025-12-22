@@ -1,12 +1,17 @@
 import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
-import { BrowserRouter, Route } from "react-router-dom";
 
 import ItemCard from "../ItemCard/ItemCard";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import { useContext } from "react";
 
-function Main({ weatherData, handleCardClick, clothingItems }) {
+function Main({
+  weatherData,
+  handleCardClick,
+  clothingItems,
+  onCardLike,
+  currentUser,
+}) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   return (
@@ -23,7 +28,6 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
         <ul className="cards__list">
           {clothingItems
             .filter((item) => {
-              // If weather type is not set yet, show all items as a fallback.
               if (!weatherData.type) return true;
               return (
                 (item.weather || "").toLowerCase() ===
@@ -37,6 +41,8 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
                   item={item}
                   onCardLike={onCardLike}
                   onCardClick={handleCardClick}
+                  isLoggedIn={true}
+                  currentUser={currentUser}
                 />
               );
             })}

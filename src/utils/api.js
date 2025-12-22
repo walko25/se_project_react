@@ -1,35 +1,35 @@
-const baseUrl = "http://localhost:3001";
+import { checkResponse } from "./auth";
+
+const baseUrl = "http://127.0.0.1:3001";
 
 const headers = {
   "Content-Type": "application/json",
 };
 
-const handleServerResponse = (res) => {
-  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-};
-
 export const getItems = () => {
-  return fetch(`${baseUrl}/items`, { headers }).then(handleServerResponse);
+  return fetch(`${baseUrl}/items`, { headers }).then(checkResponse);
 };
 
-export function addItem({ name, imageUrl, weather }) {
+export const addItem = (data, token) => {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers,
-    body: JSON.stringify({
-      name,
-      imageUrl,
-      weather,
-    }),
-  }).then(handleServerResponse);
-}
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  }).then(checkResponse);
+};
 
-export function removeItem(itemID) {
-  return fetch(`${baseUrl}/items/${itemID}`, {
+export const removeItem = (id, token) => {
+  return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
-    headers,
-  }).then(handleServerResponse);
-}
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+};
 
 export function addCardLike(itemID, token) {
   return fetch(`${baseUrl}/items/${itemID}/likes`, {
@@ -38,7 +38,7 @@ export function addCardLike(itemID, token) {
       ...headers,
       authorization: `Bearer ${token}`,
     },
-  }).then(handleServerResponse);
+  }).then(checkResponse);
 }
 
 export function removeCardLike(itemID, token) {
@@ -48,5 +48,16 @@ export function removeCardLike(itemID, token) {
       ...headers,
       authorization: `Bearer ${token}`,
     },
-  }).then(handleServerResponse);
+  }).then(checkResponse);
 }
+
+export const updateProfile = (userData, token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(userData),
+  }).then(checkResponse);
+};

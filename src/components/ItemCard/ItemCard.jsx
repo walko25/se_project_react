@@ -1,4 +1,5 @@
 import "./ItemCard.css";
+import likeButton from "../../assets/like-button.png";
 
 function ItemCard({ item, onCardClick, onCardLike, currentUser, isLoggedIn }) {
   const handleCardClick = () => {
@@ -34,7 +35,7 @@ function ItemCard({ item, onCardClick, onCardLike, currentUser, isLoggedIn }) {
           onClick={handleLike}
           type="button"
         >
-          ♥
+          <img src={likeButton} alt="Like Button" />
         </button>
       )}
     </li>

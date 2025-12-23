@@ -118,16 +118,24 @@ function App() {
     const token = localStorage.getItem("jwt");
 
     !isLiked
-      ? addCardLike(id, token).then((updatedCard) => {
-          setClothingItems((cards) =>
-            cards.map((item) => (item._id === id ? updatedCard : item))
-          );
-        })
-      : removeCardLike(id, token).then((updatedCard) => {
-          setClothingItems((cards) =>
-            cards.map((item) => (item._id === id ? updatedCard : item))
-          );
-        });
+      ? addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((error) => {
+            console.error("Error adding like:", error);
+          })
+      : removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((error) => {
+            console.error("Error removing like:", error);
+          });
   };
 
   const handleCreateModal = () => setActiveModal("add-garment");
@@ -313,13 +321,6 @@ function App() {
               onClose={closeActiveModal}
               onUpdateUser={handleUpdateUser}
               isOpen={activeModal === "edit-profile"}
-            />
-          )}
-          {isEditProfileModalOpen && (
-            <EditProfileModal
-              isOpen={isEditProfileModalOpen}
-              onClose={closeActiveModal}
-              onUpdateUser={handleUpdateUser}
             />
           )}
           <Footer />

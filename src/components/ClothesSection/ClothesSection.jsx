@@ -6,6 +6,7 @@ export default function ClothesSection({
   onCardClick,
   handleAddClick,
   currentUser,
+  onCardLike,
 }) {
   return (
     <div className="clothes-section">
@@ -24,7 +25,14 @@ export default function ClothesSection({
           .filter((item) => item.owner === currentUser?._id)
           .map((item) => {
             return (
-              <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
+              <ItemCard
+                key={item._id ?? item.id}
+                item={item}
+                onCardLike={onCardLike}
+                onCardClick={onCardClick}
+                isLoggedIn={isLoggedIn}
+                currentUser={currentUser}
+              />
             );
           })}
       </ul>

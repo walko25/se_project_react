@@ -58,9 +58,7 @@ function Header({
               )}
             </div>
           </NavLink>
-          <button type="button" className="header__logout" onClick={onLogout}>
-            Log out
-          </button>
+          
         </div>
       ) : (
         <div className="header__auth">

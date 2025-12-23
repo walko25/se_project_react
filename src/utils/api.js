@@ -36,7 +36,7 @@ export function addCardLike(itemID, token) {
     method: "PUT",
     headers: {
       ...headers,
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);
 }

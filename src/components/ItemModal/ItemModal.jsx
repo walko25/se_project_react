@@ -6,7 +6,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
   const currentUser = useContext(CurrentUserContext);
 
-  const isOwn = card.owner === currentUser?._id;
+  const isOwn = card.owner === currentUser?.data._id;
 
   const handleDeleteClick = () => {
     if (!card._id) {

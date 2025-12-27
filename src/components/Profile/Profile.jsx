@@ -8,10 +8,14 @@ export default function Profile({
   handleAddClick,
   onEditProfileModal,
   currentUser,
+  onLogout,
 }) {
   return (
     <section className="profile">
-      <SideBar onEditProfileModal={onEditProfileModal} />
+      <SideBar
+        onEditProfileModal={onEditProfileModal}
+        handleLogout={onLogout}
+      />
       <ClothesSection
         onCardClick={onCardClick}
         clothingItems={clothingItems}

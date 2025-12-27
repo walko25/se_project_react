@@ -22,3 +22,12 @@
   gap: 20px;
   padding: 0;
 }
+
+.clothes-section__row {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}

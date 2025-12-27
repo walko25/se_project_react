@@ -30,7 +30,7 @@ export default function ClothesSection({
                 item={item}
                 onCardLike={onCardLike}
                 onCardClick={onCardClick}
-                isLoggedIn={isLoggedIn}
+                // isLoggedIn={isLoggedIn}
                 currentUser={currentUser}
               />
             );

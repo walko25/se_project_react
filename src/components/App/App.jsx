@@ -278,6 +278,7 @@ function App() {
                       handleAddClick={handleAddClick}
                       currentUser={currentUser}
                       onEditProfileModal={handleEditProfileModal}
+                      onLogout={handleLogout}
                     />
                   </ProtectedRoute>
                 }

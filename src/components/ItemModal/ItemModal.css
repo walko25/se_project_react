@@ -2,6 +2,9 @@
   border: none;
   background-color: transparent;
   z-index: 10;
+  position: absolute;
+  top: 16px;
+  right: 16px;
 }
 
 .modal__close:hover {
@@ -9,17 +12,19 @@
 }
 
 .modal__image {
-  width: 498px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  right: 28px;
-  bottom: 28px;
   position: relative;
+  width: 100%;
+  max-width: 500px;
+  display: block;
+  margin: 0;
 }
 
 .modal__footer {
   display: flex;
   justify-content: space-between;
+  margin-left: 32px;
 }
 
 .modal__delete {
@@ -27,7 +32,16 @@
   color: #ff4d00;
   background-color: white;
   cursor: pointer;
-  /* position: absolute;
-  right: 50px;
-  bottom: 100px; */
+  margin-right: 32px;
+}
+
+.modal__content_type_image {
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  padding: 0;
+}
+
+.modal__weather {
+  margin: 0 0 32px 32px;
 }

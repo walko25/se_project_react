@@ -3,7 +3,7 @@ import avatar from "../../assets/avatar.png";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-export default function SideBar({ onEditProfileModal, onLogout }) {
+export default function SideBar({ onEditProfileModal, handleLogout }) {
   const currentUser = useContext(CurrentUserContext);
 
   const avatarDefault = currentUser?.data?.avatar || avatar;
@@ -23,7 +23,11 @@ export default function SideBar({ onEditProfileModal, onLogout }) {
           <button className="sidebar__button" onClick={onEditProfileModal}>
             Edit profile
           </button>
-          <button type="button" className="sidebar__button" onClick={onLogout}>
+          <button
+            type="button"
+            className="sidebar__button"
+            onClick={() => handleLogout()}
+          >
             Log out
           </button>
         </div>

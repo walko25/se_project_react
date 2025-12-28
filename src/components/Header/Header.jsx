@@ -3,6 +3,8 @@ import logo from "../../assets/header__logo.svg";
 import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Header({
   handleAddClick,
@@ -10,10 +12,11 @@ function Header({
   onRegisterModal,
   onLoginModal,
   onLogout,
-  currentUser,
   isLoggedIn,
   weatherData,
 }) {
+  const currentUser = useContext(CurrentUserContext);
+
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -58,7 +61,6 @@ function Header({
               )}
             </div>
           </NavLink>
-          
         </div>
       ) : (
         <div className="header__auth">

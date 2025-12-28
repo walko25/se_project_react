@@ -9,8 +9,8 @@ function EditProfileModal({ isOpen, onClose, onUpdateUser }) {
 
   useEffect(() => {
     if (currentUser) {
-      setName(currentUser.name || "");
-      setAvatar(currentUser.avatar || "");
+      setName(currentUser.data.name || "");
+      setAvatar(currentUser.data.avatar || "");
     }
   }, [currentUser, isOpen]);
 

@@ -44,7 +44,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [currentUser, setCurrentUser] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
 
   const handleToggleSwitchChange = () => {
@@ -66,13 +66,20 @@ function App() {
     };
 
     addItem(newCardData, token)
-      .then((data) => {
+      .then((newItem) => {
+        console.log(newItem.data);
         const normalized = {
-          _id: data._id ?? data.id,
-          name: data.name,
-          imageUrl: data.imageUrl ?? data.link,
-          weather: data.weather ? data.weather.toLowerCase() : "",
+          _id: newItem.data._id ?? newItem.data.id,
+          name: newItem.data.name,
+          imageUrl: newItem.data.imageUrl ?? newItem.data.link,
+          weather: newItem.data.weather
+            ? newItem.data.weather.toLowerCase()
+            : "",
+          owner:
+            newItem.data.owner || currentUser?.data?._id || currentUser?._id,
+          likes: newItem.data.likes || [],
         };
+
         setClothingItems((prevItems) => [normalized, ...prevItems]);
         closeActiveModal();
       })
@@ -103,7 +110,7 @@ function App() {
   };
 
   const handleEditProfileModal = () => {
-    setIsEditProfileModalOpen(true);
+    setActiveModal("edit-profile");
   };
 
   const handleAddClick = () => {
@@ -219,7 +226,10 @@ function App() {
         .catch((err) => {
           console.error("Token validation failed:", err);
           localStorage.removeItem("jwt");
+          setIsLoggedIn(false);
         });
+    } else {
+      setIsLoggedIn(false);
     }
 
     getItems()

@@ -1,5 +1,6 @@
 import "./ItemCard.css";
 import likeButton from "../../assets/like-button.png";
+import likeButtonActive from "../../assets/like-button-active.png";
 
 function ItemCard({ item, onCardClick, onCardLike, currentUser, isLoggedIn }) {
   const handleCardClick = () => {
@@ -10,7 +11,7 @@ function ItemCard({ item, onCardClick, onCardLike, currentUser, isLoggedIn }) {
     isLoggedIn &&
     currentUser &&
     item.likes &&
-    item.likes.includes(currentUser._id);
+    item.likes.includes(currentUser.data._id);
 
   const handleLike = () => {
     onCardLike({ id: item._id, isLiked });
@@ -35,7 +36,10 @@ function ItemCard({ item, onCardClick, onCardLike, currentUser, isLoggedIn }) {
           onClick={handleLike}
           type="button"
         >
-          <img src={likeButton} alt="Like Button" />
+          <img
+            src={isLiked ? likeButtonActive : likeButton}
+            alt="Like Button"
+          />
         </button>
       )}
     </li>

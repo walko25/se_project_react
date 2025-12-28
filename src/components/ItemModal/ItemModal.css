@@ -19,6 +19,7 @@
   max-width: 500px;
   display: block;
   margin: 0;
+  max-height: 400px;
 }
 
 .modal__footer {

@@ -22,7 +22,14 @@ export default function ClothesSection({
       </div>
       <ul className="clothes-section__items">
         {clothingItems
-          .filter((item) => item.owner === currentUser?._id)
+          .filter((item) => {
+            console.log("All clothing items:", clothingItems);
+            console.log("Current user for filtering:", currentUser);
+            const itemOwner = item.owner?._id || item.owner;
+            const userId =
+              currentUser?.data?._id || currentUser?._id || currentUser?.id;
+            return itemOwner === userId;
+          })
           .map((item) => {
             return (
               <ItemCard

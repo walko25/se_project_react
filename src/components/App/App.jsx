@@ -289,6 +289,8 @@ function App() {
                       currentUser={currentUser}
                       onEditProfileModal={handleEditProfileModal}
                       onLogout={handleLogout}
+                      isLoggedIn={isLoggedIn}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }

@@ -1,6 +1,6 @@
 import { checkResponse } from "./auth";
 
-const baseUrl = "http://127.0.0.1:3001";
+import { baseUrl } from "../utils/constants";
 
 const headers = {
   "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export function removeCardLike(itemID, token) {
     method: "DELETE",
     headers: {
       ...headers,
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);
 }

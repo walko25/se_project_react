@@ -14,3 +14,8 @@ React, Vite, CSS, HTML, JavaScript
 
 The backend for this project can be found here:
 [WTWR Backend](https://github.com/walko25/se_project_express)
+
+## Doimain Name:
+www.WTWR25.26.com.jumpingcrab.com
+
+

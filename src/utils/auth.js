@@ -1,4 +1,4 @@
-const baseUrl = "http://127.0.0.1:3001";
+import { baseUrl } from "../utils/constants";
 
 // Helper function to check response
 export const checkResponse = (res) => {
@@ -36,7 +36,7 @@ export const checkToken = (token) => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);
 };
@@ -47,7 +47,7 @@ export const updateProfile = (userData, token) => {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(userData),
   }).then(checkResponse);

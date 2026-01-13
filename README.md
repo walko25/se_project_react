@@ -16,9 +16,9 @@ The backend for this project can be found here:
 [WTWR Backend](https://github.com/walko25/se_project_express)
 [WTWR Fronend](https://github.com/walko25/se_project_react)
 
-## Doimain Name:
+## Domain Name:
 
-www.WTWR25.26.com.jumpingcrab.com
+www.WTWR.2526.jumpingcrab.com
 
 ## Submission Video
 

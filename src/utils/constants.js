@@ -167,7 +167,10 @@ export const coordinates = {
 
 export const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://api.wtwr.2526.jumpingcrab.com"
+    ? "https://wtwr.2526.jumpingcrab.com:3001"
     : "http://localhost:3001";
+
+console.log("Current baseUrl:", baseUrl);
+console.log("NODE_ENV:", process.env.NODE_ENV);
 
 export const APIKey = "eb52789d8592e2cf916c98826e80bae4";

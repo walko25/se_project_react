@@ -6,7 +6,7 @@
   "homepage": "https://wtwr.2526.jumpingcrab.com",
   "scripts": {
     "dev": "vite --open",
-    "build": "vite build",
+    "build": "NODE_ENV=production vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "deploy": "npm run build && scp -r ./dist/* walkerowen@wtwr.2526.jumpingcrab.com:/home/walkerowen/frontend"

@@ -20,6 +20,8 @@ The backend for this project can be found here:
 
 www.WTWR.2526.jumpingcrab.com
 
-## Submission Video
+#### Project Pitch Video
 
-Will submit video once I have cleared up oher issues with my code. I want all edits/corrections from the code review to be implemented first.
+Here is a video i made describing the functionality of the WTWR app.
+
+https://drive.google.com/file/d/1oM0QDg6Bs40_gjCbqKqUmlGRmxHbEiJj/view?usp=drive_link
